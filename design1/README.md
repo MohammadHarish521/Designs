@@ -1,4 +1,4 @@
-# Exceptional Portfolio
+# Exceptional Portfolio .
 
 A modern, minimal design gallery built with React, TypeScript, and Tailwind CSS.
 
