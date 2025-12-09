@@ -1,4 +1,4 @@
-# Exceptional Portfolios
+# Exceptional Portfolio
 
 A modern, minimal design gallery built with React, TypeScript, and Tailwind CSS.
 
@@ -21,11 +21,13 @@ A modern, minimal design gallery built with React, TypeScript, and Tailwind CSS.
 ### Installation
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Start the development server:
+
 ```bash
 npm run dev
 ```
