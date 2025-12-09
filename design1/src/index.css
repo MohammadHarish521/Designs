@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* Beam Animations */
+@keyframes beam-move {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.animate-beam {
+  stroke-dasharray: 100 1000;
+  animation: beam-move 6s linear infinite;
+}
+
+.animate-beam-delayed {
+  stroke-dasharray: 100 1000;
+  animation: beam-move 8s linear infinite;
+  animation-delay: 2s;
+}
+
+.animate-beam-fast {
+  stroke-dasharray: 80 800;
+  animation: beam-move 4s linear infinite;
+  animation-delay: 1s;
+}
+
+.glow-filter {
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
+}
