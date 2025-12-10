@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* Base Settings */
+body {
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.font-serif {
+  font-family: "Playfair Display", serif;
+}
+
+/* Grid Pattern */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 40%,
+    transparent 100%
+  );
+}
+
+/* Animations */
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes float-subtle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-flow {
+  stroke-dasharray: 10, 10;
+  animation: flow-dash 1s linear infinite;
+}
+.animate-draw-slow {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: flow-dash 4s ease-out forwards;
+}
+.animate-float-subtle {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.reveal-delay-1 {
+  animation: reveal-up 0.8s ease-out 0.1s forwards;
+  opacity: 0;
+}
+.reveal-delay-2 {
+  animation: reveal-up 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+.reveal-delay-3 {
+  animation: reveal-up 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+/* Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

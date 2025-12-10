@@ -1,0 +1,1027 @@
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Landscape Vol. 4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@1,400&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Base Settings */
+      body {
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .font-serif {
+        font-family: "Playfair Display", serif;
+      }
+
+      /* Grid Pattern */
+      .bg-grid {
+        background-size: 40px 40px;
+        background-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+        mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          black 40%,
+          transparent 100%
+        );
+      }
+
+      /* Animations */
+      @keyframes flow-dash {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes float-subtle {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+      @keyframes pulse-ring {
+        0% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
+      }
+      @keyframes reveal-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-flow {
+        stroke-dasharray: 10, 10;
+        animation: flow-dash 1s linear infinite;
+      }
+      .animate-draw-slow {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: flow-dash 4s ease-out forwards;
+      }
+      .animate-float-subtle {
+        animation: float-subtle 4s ease-in-out infinite;
+      }
+      .animate-pulse-ring {
+        animation: pulse-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+      }
+
+      .reveal-delay-1 {
+        animation: reveal-up 0.8s ease-out 0.1s forwards;
+        opacity: 0;
+      }
+      .reveal-delay-2 {
+        animation: reveal-up 0.8s ease-out 0.2s forwards;
+        opacity: 0;
+      }
+      .reveal-delay-3 {
+        animation: reveal-up 0.8s ease-out 0.4s forwards;
+        opacity: 0;
+      }
+
+      /* Utilities */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-white text-slate-900 overflow-x-hidden selection:bg-[#a3ff00] selection:text-slate-900"
+  >
+    <!-- Background Layer -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+      <div class="absolute inset-0 bg-grid h-[100vh]"></div>
+      <!-- Ambient Glows -->
+      <div
+        class="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-[100px]"
+      ></div>
+      <div
+        class="absolute top-[10%] right-[10%] w-[400px] h-[400px] bg-indigo-50/50 rounded-full blur-[100px]"
+      ></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 px-6 py-5 md:px-12 flex justify-between items-center glass-panel border-b border-slate-100/50"
+    >
+      <div class="flex items-center gap-3">
+        <div
+          class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white shadow-lg shadow-slate-900/20"
+        >
+          <span class="font-serif italic font-bold text-lg">V</span>
+        </div>
+        <span
+          class="text-xs font-medium tracking-tight text-slate-500 uppercase"
+          >Vol. 4 Report</span
+        >
+      </div>
+      <div class="hidden md:flex gap-8">
+        <a
+          href="#"
+          class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
+          >Insights</a
+        >
+        <a
+          href="#"
+          class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
+          >Methodology</a
+        >
+        <a
+          href="#"
+          class="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
+          >Download</a
+        >
+      </div>
+      <button
+        class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-medium tracking-wide hover:bg-slate-800 transition-all hover:shadow-lg hover:shadow-slate-900/20"
+      >
+        Get Access
+      </button>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section
+      class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-24 overflow-hidden"
+    >
+      <!-- Hero Pathways (SVG Background) -->
+      <svg
+        class="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-40"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <linearGradient id="line-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#cbd5e1" stop-opacity="0"></stop>
+            <stop offset="50%" stop-color="#94a3b8" stop-opacity="0.5"></stop>
+            <stop offset="100%" stop-color="#cbd5e1" stop-opacity="0"></stop>
+          </linearGradient>
+        </defs>
+        <!-- Vertical Flow Lines -->
+        <path
+          d="M200,0 L200,300 C200,400 500,400 500,600 L500,1000"
+          fill="none"
+          stroke="url(#line-gradient)"
+          stroke-width="1"
+          stroke-dasharray="4 4"
+        ></path>
+        <path
+          d="M1240,0 L1240,300 C1240,400 940,400 940,600 L940,1000"
+          fill="none"
+          stroke="url(#line-gradient)"
+          stroke-width="1"
+          stroke-dasharray="4 4"
+        ></path>
+
+        <!-- Animated Nodes -->
+        <circle
+          cx="200"
+          cy="200"
+          r="3"
+          fill="#94a3b8"
+          class="animate-pulse"
+        ></circle>
+        <circle
+          cx="1240"
+          cy="250"
+          r="3"
+          fill="#94a3b8"
+          class="animate-pulse"
+          style="animation-delay: 1s"
+        ></circle>
+      </svg>
+
+      <!-- Floating Elements (Avatars & Data Points) -->
+      <div
+        class="absolute inset-0 pointer-events-none z-10 max-w-7xl mx-auto hidden md:block"
+      >
+        <!-- Left Data Node -->
+        <div
+          class="absolute top-[30%] left-10 lg:left-0 reveal-delay-2 animate-float-subtle"
+        >
+          <div
+            class="flex items-center gap-3 p-2 pr-4 bg-white/80 backdrop-blur rounded-full border border-slate-200 shadow-sm"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&amp;h=100&amp;fit=crop"
+              class="w-10 h-10 rounded-full object-cover"
+              alt=""
+            />
+            <div class="flex flex-col">
+              <span
+                class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold"
+                >Source</span
+              >
+              <span class="text-xs font-medium text-slate-700"
+                >Consumer Data</span
+              >
+            </div>
+          </div>
+          <!-- Connector Line -->
+          <svg
+            class="absolute top-1/2 left-full w-24 h-20 -translate-y-1/2 pointer-events-none"
+            style="overflow: visible"
+          >
+            <path
+              d="M0,0 C40,0 40,40 80,40"
+              fill="none"
+              stroke="#cbd5e1"
+              stroke-width="1"
+            ></path>
+            <circle cx="80" cy="40" r="2" fill="#94a3b8"></circle>
+          </svg>
+        </div>
+
+        <!-- Right Data Node -->
+        <div
+          class="absolute bottom-[30%] right-10 lg:right-0 reveal-delay-2 animate-float-subtle"
+          style="animation-delay: 1.5s"
+        >
+          <div
+            class="flex items-center gap-3 p-2 pl-4 bg-white/80 backdrop-blur rounded-full border border-slate-200 shadow-sm flex-row-reverse text-right"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600"
+            >
+              <iconify-icon icon="lucide:activity" width="18"></iconify-icon>
+            </div>
+            <div class="flex flex-col">
+              <span
+                class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold"
+                >Velocity</span
+              >
+              <span class="text-xs font-medium text-slate-700"
+                >+24% Growth</span
+              >
+            </div>
+          </div>
+          <!-- Connector Line -->
+          <svg
+            class="absolute top-1/2 right-full w-24 h-20 -translate-y-1/2 pointer-events-none"
+            style="overflow: visible"
+          >
+            <path
+              d="M0,0 C-40,0 -40,-40 -80,-40"
+              fill="none"
+              stroke="#cbd5e1"
+              stroke-width="1"
+            ></path>
+            <circle cx="-80" cy="-40" r="2" fill="#94a3b8"></circle>
+          </svg>
+        </div>
+      </div>
+
+      <div class="relative z-20 text-center max-w-4xl px-4">
+        <!-- Badge -->
+        <div
+          class="reveal-delay-1 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 mb-8 shadow-sm cursor-default"
+        >
+          <span class="relative flex h-2 w-2">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
+            ></span>
+          </span>
+          <span
+            class="text-[11px] font-semibold text-slate-500 tracking-wide uppercase"
+            >Report 2024 is Live</span
+          >
+        </div>
+
+        <!-- Main Title -->
+        <h1
+          class="reveal-delay-2 flex flex-col items-center leading-[0.9] tracking-tighter text-slate-900 mb-8"
+        >
+          <span class="text-6xl md:text-8xl font-medium tracking-tighter"
+            >The digital</span
+          >
+          <div class="flex items-center gap-4 mt-1 md:mt-3 relative">
+            <span
+              class="text-6xl md:text-8xl font-medium italic font-serif text-slate-800 z-10"
+              >landscape</span
+            >
+
+            <!-- Decorative Graphic behind text -->
+            <div
+              class="absolute -right-12 -top-8 w-24 h-24 bg-gradient-to-br from-[#a3ff00]/30 to-transparent blur-2xl rounded-full -z-10"
+            ></div>
+
+            <!-- Version Box -->
+            <div
+              class="relative group ml-2 md:ml-6 rotate-6 hover:rotate-0 transition-transform duration-500"
+            >
+              <div
+                class="absolute -inset-0.5 bg-gradient-to-r from-emerald-300 to-lime-300 rounded blur opacity-40 group-hover:opacity-75 transition"
+              ></div>
+              <div
+                class="relative px-3 py-1 bg-white rounded border border-slate-200"
+              >
+                <span
+                  class="text-sm md:text-lg font-bold text-slate-900 font-serif italic"
+                  >Vol. 4</span
+                >
+              </div>
+            </div>
+          </div>
+        </h1>
+
+        <p
+          class="reveal-delay-3 text-slate-500 text-lg md:text-xl max-w-xl mx-auto font-light leading-relaxed mb-10"
+        >
+          Analyzing the shifts in consumer behavior and technology adoption
+          across the modern web ecosystem.
+        </p>
+
+        <!-- Control Interface -->
+        <div
+          class="reveal-delay-3 p-2 bg-white/60 backdrop-blur-md border border-slate-200 rounded-2xl shadow-xl shadow-slate-200/40 inline-flex flex-col md:flex-row items-center gap-2 md:gap-4 mx-auto w-full md:w-auto max-w-md md:max-w-none"
+        >
+          <!-- Dropdown Trigger -->
+          <div
+            class="flex items-center justify-between w-full md:w-auto px-4 py-2.5 bg-white rounded-xl border border-slate-100 hover:border-slate-200 transition-colors cursor-pointer min-w-[160px] group"
+          >
+            <div class="flex flex-col items-start">
+              <span
+                class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+                >Region</span
+              >
+              <span
+                class="text-sm font-medium text-slate-900 group-hover:text-emerald-600 transition-colors"
+                >Global Analysis</span
+              >
+            </div>
+            <iconify-icon
+              icon="lucide:chevron-down"
+              class="text-slate-400 group-hover:text-slate-600"
+            ></iconify-icon>
+          </div>
+
+          <!-- Divider -->
+          <div class="hidden md:block w-px h-8 bg-slate-200"></div>
+          <div class="block md:hidden w-full h-px bg-slate-200"></div>
+
+          <!-- Slider -->
+          <div class="flex items-center gap-4 px-4 w-full md:w-auto">
+            <span class="text-xs font-medium text-slate-500">Q1</span>
+            <div
+              class="relative w-full md:w-48 h-1.5 bg-slate-100 rounded-full overflow-hidden"
+            >
+              <div
+                class="absolute inset-y-0 left-0 w-2/3 bg-slate-800 rounded-full"
+              ></div>
+              <!-- Animated stripes on bar -->
+              <div
+                class="absolute inset-0 w-full h-full bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%,transparent_100%)] bg-[length:10px_10px] animate-pulse"
+              ></div>
+            </div>
+            <span class="text-xs font-medium text-slate-900">Q4</span>
+          </div>
+
+          <!-- Action -->
+          <button
+            class="w-full md:w-12 h-10 md:h-12 flex items-center justify-center rounded-xl bg-slate-900 text-white hover:bg-[#a3ff00] hover:text-slate-900 transition-all duration-300 shadow-md"
+          >
+            <iconify-icon icon="lucide:arrow-right" width="20"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Connector Section (Hero -> Marquee) -->
+    <div class="relative h-16 w-full overflow-hidden pointer-events-none z-10">
+      <!-- Central Line -->
+      <div
+        class="absolute left-1/2 -translate-x-1/2 top-0 h-full w-px bg-gradient-to-b from-slate-200 via-slate-300 to-slate-200"
+      ></div>
+      <!-- Flowing Dot -->
+      <div
+        class="absolute left-1/2 -translate-x-1/2 top-0 w-1 h-2 bg-slate-900 rounded-full animate-float"
+        style="animation-duration: 2s"
+      ></div>
+    </div>
+
+    <!-- Marquee -->
+    <div
+      class="w-full border-y border-slate-100 bg-white/40 backdrop-blur-sm py-10 overflow-hidden relative z-20"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white z-10"
+      ></div>
+      <div
+        class="flex items-center justify-center gap-16 md:gap-32 opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+      >
+        <iconify-icon
+          icon="simple-icons:stripe"
+          width="50"
+          class="shrink-0"
+        ></iconify-icon>
+        <iconify-icon
+          icon="simple-icons:vercel"
+          width="70"
+          class="shrink-0"
+        ></iconify-icon>
+        <iconify-icon
+          icon="simple-icons:linear"
+          width="70"
+          class="shrink-0"
+        ></iconify-icon>
+        <iconify-icon
+          icon="simple-icons:notion"
+          width="30"
+          class="shrink-0"
+        ></iconify-icon>
+        <iconify-icon
+          icon="simple-icons:airbnb"
+          width="70"
+          class="shrink-0"
+        ></iconify-icon>
+        <iconify-icon
+          icon="simple-icons:raycast"
+          width="70"
+          class="shrink-0"
+        ></iconify-icon>
+      </div>
+    </div>
+
+    <!-- Bento Grid Section -->
+    <section class="relative max-w-6xl mx-auto px-6 py-24 z-20">
+      <!-- Background Grid Connector Lines -->
+      <svg
+        class="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-visible"
+      >
+        <!-- Line connecting top center to first card -->
+        <path
+          d="M570,-40 L570,20 L300,20 L300,50"
+          fill="none"
+          stroke="#e2e8f0"
+          stroke-width="1"
+          class="hidden md:block"
+        ></path>
+        <circle
+          cx="570"
+          cy="-40"
+          r="3"
+          fill="#cbd5e1"
+          class="hidden md:block"
+        ></circle>
+      </svg>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[320px]">
+        <!-- Large Main Graph Card -->
+        <div
+          class="md:col-span-2 row-span-1 bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 relative overflow-hidden group"
+        >
+          <!-- Hover Glow -->
+          <div
+            class="absolute -right-20 -top-20 w-64 h-64 bg-slate-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"
+          ></div>
+
+          <div class="relative z-10 h-full flex flex-col justify-between">
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="flex items-center gap-2 mb-3">
+                  <div
+                    class="w-8 h-8 bg-slate-50 border border-slate-100 rounded-lg flex items-center justify-center text-slate-700"
+                  >
+                    <iconify-icon
+                      icon="lucide:bar-chart-2"
+                      width="16"
+                    ></iconify-icon>
+                  </div>
+                  <span
+                    class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100"
+                    >Live Data</span
+                  >
+                </div>
+                <h3 class="text-2xl font-medium tracking-tight text-slate-900">
+                  Adoption Velocity
+                </h3>
+                <p class="text-slate-500 text-sm mt-1">
+                  Market penetration speed per quarter.
+                </p>
+              </div>
+              <div class="text-right">
+                <span
+                  class="text-3xl font-semibold tracking-tight text-slate-900"
+                  >+42%</span
+                >
+                <p
+                  class="text-[10px] text-slate-400 uppercase tracking-wider font-medium"
+                >
+                  Year over Year
+                </p>
+              </div>
+            </div>
+
+            <!-- Enhanced Chart Visual -->
+            <div class="w-full h-32 flex items-end gap-1.5 mt-4 relative">
+              <!-- Horizontal Grid Lines -->
+              <div
+                class="absolute inset-0 flex flex-col justify-between pointer-events-none"
+              >
+                <div class="w-full h-px bg-slate-50 dashed"></div>
+                <div class="w-full h-px bg-slate-50 dashed"></div>
+                <div class="w-full h-px bg-slate-50 dashed"></div>
+              </div>
+
+              <!-- Bars -->
+              <div
+                class="w-full bg-slate-50 border border-slate-100 h-[30%] rounded-t-sm transition-all duration-500 group-hover:bg-slate-100"
+              ></div>
+              <div
+                class="w-full bg-slate-100 border border-slate-200 h-[45%] rounded-t-sm transition-all duration-500 group-hover:bg-slate-200 delay-75"
+              ></div>
+              <div
+                class="w-full bg-slate-200 border border-slate-300 h-[35%] rounded-t-sm transition-all duration-500 group-hover:bg-slate-300 delay-100"
+              ></div>
+              <div
+                class="w-full bg-slate-300 border border-slate-400 h-[55%] rounded-t-sm transition-all duration-500 group-hover:bg-slate-400 delay-150"
+              ></div>
+              <div
+                class="w-full bg-[#a3ff00] border border-lime-400 h-[75%] rounded-t-sm shadow-[0_0_20px_rgba(163,255,0,0.3)] relative group-hover:h-[85%] transition-all duration-700 ease-out delay-200"
+              >
+                <div
+                  class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  Q4
+                </div>
+              </div>
+              <div class="w-full bg-slate-100 h-[40%] rounded-t-sm"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dark Stats Card -->
+        <div
+          class="bg-slate-900 text-white rounded-3xl p-8 shadow-xl flex flex-col justify-between relative overflow-hidden group"
+        >
+          <!-- Mesh Gradient Background -->
+          <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-slate-800 via-slate-900 to-slate-950"
+          ></div>
+          <!-- Animated Pulse Circle -->
+          <div
+            class="absolute -bottom-10 -right-10 w-40 h-40 bg-indigo-500/20 rounded-full blur-2xl group-hover:bg-indigo-500/30 transition-colors"
+          ></div>
+
+          <div class="relative z-10">
+            <div class="flex justify-between items-start mb-6">
+              <div
+                class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center"
+              >
+                <iconify-icon
+                  icon="lucide:users"
+                  width="20"
+                  class="text-slate-300"
+                ></iconify-icon>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="relative flex h-2 w-2">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
+                  ></span>
+                </span>
+                <span class="text-xs text-slate-400">Active</span>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-5xl font-medium tracking-tighter">2.4M</div>
+              <div class="text-slate-400 text-sm">Total Sessions</div>
+            </div>
+          </div>
+
+          <div class="relative z-10 pt-6 border-t border-slate-800">
+            <div class="flex justify-between items-center">
+              <span class="text-xs text-slate-400">Retention</span>
+              <span class="text-xs font-mono text-[#a3ff00]">98.2%</span>
+            </div>
+            <div
+              class="w-full bg-slate-800 h-1 mt-2 rounded-full overflow-hidden"
+            >
+              <div class="bg-[#a3ff00] h-full w-[98%] rounded-full"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- List Card with Connectors -->
+        <div
+          class="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm flex flex-col justify-between group hover:border-slate-300 transition-colors relative"
+        >
+          <!-- Decorative Connector Top -->
+          <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[1px] w-12 h-[2px] bg-slate-200 group-hover:bg-slate-300 transition-colors"
+          ></div>
+
+          <div>
+            <h3
+              class="text-lg font-medium tracking-tight mb-6 flex items-center gap-2"
+            >
+              <iconify-icon
+                icon="lucide:layers"
+                width="18"
+                class="text-slate-400"
+              ></iconify-icon>
+              Top Vectors
+            </h3>
+            <ul class="space-y-4">
+              <li
+                class="flex items-center gap-3 text-sm text-slate-600 group/item hover:text-slate-900 transition-colors cursor-default"
+              >
+                <div
+                  class="w-8 h-8 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 group-hover/item:scale-110 transition-transform"
+                >
+                  <iconify-icon
+                    icon="lucide:smartphone"
+                    width="14"
+                  ></iconify-icon>
+                </div>
+                <span class="font-medium">Mobile First</span>
+                <span
+                  class="ml-auto text-slate-400 font-mono text-xs bg-slate-50 px-2 py-1 rounded"
+                  >45%</span
+                >
+              </li>
+              <li
+                class="flex items-center gap-3 text-sm text-slate-600 group/item hover:text-slate-900 transition-colors cursor-default"
+              >
+                <div
+                  class="w-8 h-8 rounded-lg bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover/item:scale-110 transition-transform"
+                >
+                  <iconify-icon icon="lucide:cpu" width="14"></iconify-icon>
+                </div>
+                <span class="font-medium">AI Models</span>
+                <span
+                  class="ml-auto text-slate-400 font-mono text-xs bg-slate-50 px-2 py-1 rounded"
+                  >32%</span
+                >
+              </li>
+              <li
+                class="flex items-center gap-3 text-sm text-slate-600 group/item hover:text-slate-900 transition-colors cursor-default"
+              >
+                <div
+                  class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 group-hover/item:scale-110 transition-transform"
+                >
+                  <iconify-icon icon="lucide:leaf" width="14"></iconify-icon>
+                </div>
+                <span class="font-medium">Eco Tech</span>
+                <span
+                  class="ml-auto text-slate-400 font-mono text-xs bg-slate-50 px-2 py-1 rounded"
+                  >23%</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Infrastructure Card with Isometric Visual -->
+        <div
+          class="md:col-span-2 bg-gradient-to-br from-slate-50 via-white to-slate-50 border border-slate-200 rounded-3xl p-8 flex items-center justify-between relative overflow-hidden group"
+        >
+          <div class="relative z-10 max-w-sm">
+            <div
+              class="inline-flex items-center gap-2 px-2 py-1 rounded border border-slate-200 bg-white mb-4"
+            >
+              <div
+                class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"
+              ></div>
+              <span
+                class="text-[10px] uppercase font-semibold text-slate-500 tracking-wide"
+                >System Status</span
+              >
+            </div>
+            <h3 class="text-2xl font-medium tracking-tight mb-2 text-slate-900">
+              Edge Infrastructure
+            </h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-8">
+              Optimized for distributed systems with sub-millisecond latency
+              across global regions.
+            </p>
+
+            <div class="flex gap-8">
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+                  >Latency</span
+                >
+                <span class="text-xl font-medium font-mono text-slate-900"
+                  >12ms</span
+                >
+              </div>
+              <div class="w-px h-10 bg-slate-200"></div>
+              <div class="flex flex-col gap-1">
+                <span
+                  class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold"
+                  >Uptime</span
+                >
+                <span class="text-xl font-medium font-mono text-slate-900"
+                  >99.99%</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Isometric Server Illustration -->
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-80 h-80 opacity-90 transition-transform duration-700 group-hover:scale-105"
+          >
+            <!-- Base Plate -->
+            <div
+              class="absolute top-[40%] right-[10%] w-48 h-48 bg-white border border-slate-200 rounded-2xl shadow-2xl transform rotate-x-60 rotate-z-45 translate-x-4 skew-y-12"
+            ></div>
+            <!-- Middle Plate -->
+            <div
+              class="absolute top-[35%] right-[15%] w-48 h-48 bg-white border border-slate-200 rounded-2xl shadow-xl transform rotate-x-60 rotate-z-45 translate-x-4 skew-y-12 z-10 transition-all duration-500 group-hover:-translate-y-4"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-slate-50 to-transparent"
+              ></div>
+            </div>
+            <!-- Top Plate -->
+            <div
+              class="absolute top-[30%] right-[20%] w-48 h-48 bg-white border border-slate-200 rounded-2xl shadow-lg transform rotate-x-60 rotate-z-45 translate-x-4 skew-y-12 z-20 flex items-center justify-center transition-all duration-500 group-hover:-translate-y-8"
+            >
+              <div class="transform -rotate-45 -skew-y-12">
+                <iconify-icon
+                  icon="lucide:server"
+                  width="48"
+                  class="text-slate-300"
+                ></iconify-icon>
+              </div>
+            </div>
+            <!-- Connecting Data Lines -->
+            <svg
+              class="absolute top-0 right-0 w-full h-full z-30 pointer-events-none"
+            >
+              <path
+                d="M100,100 L200,150"
+                stroke="#a3ff00"
+                stroke-width="2"
+                class="animate-flow"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transition Noodle (Grid -> CTA) -->
+    <div
+      class="relative h-32 w-full overflow-hidden pointer-events-none max-w-6xl mx-auto"
+    >
+      <svg
+        class="absolute top-0 left-0 w-full h-full text-slate-300"
+        viewBox="0 0 1000 100"
+        preserveAspectRatio="none"
+      >
+        <!-- Left Line -->
+        <path
+          d="M200,0 L200,50 L500,50"
+          fill="none"
+          stroke="currentColor"
+          stroke-dasharray="4 4"
+          stroke-width="1"
+        ></path>
+        <!-- Right Line -->
+        <path
+          d="M800,0 L800,50 L500,50 L500,100"
+          fill="none"
+          stroke="currentColor"
+          stroke-dasharray="4 4"
+          stroke-width="1"
+        ></path>
+
+        <!-- Convergence Point -->
+        <circle
+          cx="500"
+          cy="50"
+          r="3"
+          class="text-slate-400 fill-current animate-pulse"
+        ></circle>
+      </svg>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="relative py-24 px-6 border-t border-slate-100 bg-white">
+      <div class="max-w-3xl mx-auto text-center relative z-10">
+        <div
+          class="inline-flex items-center justify-center w-14 h-14 bg-slate-50 border border-slate-100 rounded-2xl mb-8 text-slate-900 shadow-sm"
+        >
+          <iconify-icon icon="lucide:send" width="24"></iconify-icon>
+        </div>
+
+        <h2
+          class="text-4xl md:text-5xl font-medium tracking-tighter text-slate-900 mb-6"
+        >
+          Ready to explore the <br />
+          <span class="font-serif italic text-slate-400">next frontier?</span>
+        </h2>
+
+        <p
+          class="text-slate-500 text-base md:text-lg mb-10 max-w-lg mx-auto leading-relaxed"
+        >
+          Get full access to the Vol. 4 report including all datasets, vector
+          graphics, and raw analysis.
+        </p>
+
+        <div
+          class="flex flex-col md:flex-row items-center justify-center gap-4"
+        >
+          <button
+            class="group w-full md:w-auto px-8 py-3.5 bg-slate-900 text-white rounded-xl font-medium tracking-tight hover:bg-slate-800 hover:-translate-y-1 transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center gap-2"
+          >
+            Download Report
+            <iconify-icon
+              icon="lucide:download"
+              width="16"
+              class="group-hover:translate-y-0.5 transition-transform"
+            ></iconify-icon>
+          </button>
+          <button
+            class="w-full md:w-auto px-8 py-3.5 bg-white border border-slate-200 text-slate-700 rounded-xl font-medium tracking-tight hover:bg-slate-50 transition-colors"
+          >
+            View Sample
+          </button>
+        </div>
+
+        <div
+          class="mt-10 flex items-center justify-center gap-6 text-xs text-slate-400 border-t border-slate-50 pt-8 max-w-xs mx-auto"
+        >
+          <div class="flex items-center gap-2">
+            <iconify-icon
+              icon="lucide:check-circle"
+              width="14"
+              class="text-emerald-500"
+            ></iconify-icon>
+            <span>Free for personal use</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <iconify-icon
+              icon="lucide:shield"
+              width="14"
+              class="text-emerald-500"
+            ></iconify-icon>
+            <span>Secure SSL</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Background Glow -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-radial from-slate-100 to-transparent blur-[80px] -z-10 pointer-events-none opacity-60"
+      ></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 border-t border-slate-200 pt-16 pb-8 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
+          <div class="col-span-2 md:col-span-1">
+            <div class="flex items-center gap-2 mb-6">
+              <div
+                class="w-6 h-6 bg-slate-900 rounded flex items-center justify-center text-white"
+              >
+                <span class="font-serif italic font-bold text-xs">V</span>
+              </div>
+              <span class="font-medium tracking-tight text-slate-900"
+                >Vol. 4</span
+              >
+            </div>
+            <p class="text-sm text-slate-500 leading-relaxed pr-4">
+              Curating the best insights from the digital world. Crafted with
+              precision for the modern web.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-sm mb-4 text-slate-900">Platform</h4>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li>
+                <a href="#" class="hover:text-slate-900 transition-colors"
+                  >Analytics</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-slate-900 transition-colors"
+                  >Research</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-slate-900 transition-colors"
+                  >Collaboration</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-sm mb-4 text-slate-900">Company</h4>
+            <ul class="space-y-3 text-sm text-slate-500">
+              <li>
+                <a href="#" class="hover:text-slate-900 transition-colors"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-slate-900 transition-colors"
+                  >Careers</a
+                >
+                <span
+                  class="text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded font-medium ml-1"
+                  >Hiring</span
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-slate-900 transition-colors"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-semibold text-sm mb-4 text-slate-900">Connect</h4>
+            <div class="flex gap-4 text-slate-400">
+              <a
+                href="#"
+                class="hover:text-slate-900 transition-colors p-2 bg-white rounded-lg border border-slate-200 shadow-sm"
+                ><iconify-icon
+                  icon="simple-icons:twitter"
+                  width="16"
+                ></iconify-icon
+              ></a>
+              <a
+                href="#"
+                class="hover:text-slate-900 transition-colors p-2 bg-white rounded-lg border border-slate-200 shadow-sm"
+                ><iconify-icon
+                  icon="simple-icons:github"
+                  width="16"
+                ></iconify-icon
+              ></a>
+              <a
+                href="#"
+                class="hover:text-slate-900 transition-colors p-2 bg-white rounded-lg border border-slate-200 shadow-sm"
+                ><iconify-icon
+                  icon="simple-icons:dribbble"
+                  width="16"
+                ></iconify-icon
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-slate-200 text-xs text-slate-500"
+        >
+          <p>© 2024 Digital Landscape Report. All rights reserved.</p>
+          <div class="flex gap-6 mt-4 md:mt-0">
+            <a href="#" class="hover:text-slate-900 transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-slate-900 transition-colors"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
