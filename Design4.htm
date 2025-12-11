@@ -1,0 +1,1036 @@
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillFunnel - Lead Magnet Mastery</title>
+
+    <!-- Fonts: Inter for clean, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+          },
+          extend: {
+            colors: {
+              // Custom refined green palette
+              brand: {
+                50: "#ecfdf5",
+                100: "#d1fae5",
+                200: "#a7f3d0",
+                300: "#6ee7b7",
+                400: "#34d399",
+                500: "#10b981",
+                600: "#059669",
+                700: "#047857",
+                800: "#065f46",
+                900: "#064e3b",
+                950: "#022c22",
+              },
+            },
+            letterSpacing: {
+              tighter: "-0.05em",
+              tight: "-0.025em",
+              normal: "0em",
+              wide: "0.025em",
+              wider: "0.05em",
+              widest: "0.1em",
+            },
+            animation: {
+              "spin-slow": "spin 12s linear infinite",
+              "noodle-draw": "draw 4s ease-in-out infinite alternate",
+              "slide-up": "slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both",
+              "fade-in": "fadeIn 1s ease-out both",
+              "pulse-glow": "pulseGlow 4s ease-in-out infinite",
+              "beam-drop": "beamDrop 3s cubic-bezier(0.4, 0, 0.2, 1) infinite",
+            },
+            keyframes: {
+              draw: {
+                "0%": { "stroke-dashoffset": "1000" },
+                "100%": { "stroke-dashoffset": "0" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(20px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              pulseGlow: {
+                "0%, 100%": { opacity: "0.4" },
+                "50%": { opacity: "0.8" },
+              },
+              beamDrop: {
+                "0%": { top: "-20%", opacity: "0" },
+                "10%": { opacity: "1" },
+                "90%": { opacity: "1" },
+                "100%": { top: "120%", opacity: "0" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #020403; /* Very dark green/black */
+        color: #d4d4d4;
+        font-feature-settings: "cv11", "ss01";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Flashlight Effect */
+      .flashlight-card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .flashlight-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 1rem;
+        padding: 1px;
+        background: radial-gradient(
+          600px circle at var(--mouse-x) var(--mouse-y),
+          rgba(52, 211, 153, 0.3),
+          transparent 40%
+        );
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .group:hover .flashlight-card::before {
+        opacity: 1;
+      }
+
+      /* 3D Card Rotation Classes */
+      .card-carousel {
+        perspective: 1200px;
+        transform-style: preserve-3d;
+      }
+      .carousel-item {
+        position: absolute;
+        transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        opacity: 0;
+        transform: scale(0.9) translateZ(-100px);
+        z-index: 0;
+        pointer-events: none;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .carousel-item.active {
+        opacity: 1;
+        transform: scale(1) translateX(0) translateZ(0);
+        z-index: 10;
+        pointer-events: auto;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+        border-color: rgba(52, 211, 153, 0.2);
+      }
+      .carousel-item.prev {
+        opacity: 0.3;
+        transform: scale(0.9) translateX(-65%) rotateY(18deg) translateZ(-80px);
+        z-index: 5;
+        filter: blur(1px) grayscale(80%);
+      }
+      .carousel-item.next {
+        opacity: 0.3;
+        transform: scale(0.9) translateX(65%) rotateY(-18deg) translateZ(-80px);
+        z-index: 5;
+        filter: blur(1px) grayscale(80%);
+      }
+
+      /* Noodle Animation */
+      .noodle-path {
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-dasharray: 1200;
+        stroke-dashoffset: 1200;
+        animation: noodle-draw 6s ease-in-out infinite alternate;
+        filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.4));
+      }
+
+      /* Connector Noodle Specific */
+      .connector-path {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.1);
+        stroke-width: 1;
+      }
+      .connector-path-active {
+        fill: none;
+        stroke: url(#gradBrandVertical);
+        stroke-width: 1.5;
+        stroke-dasharray: 600;
+        stroke-dashoffset: 600;
+        animation: noodle-draw 4s ease-in-out infinite alternate;
+      }
+
+      /* Custom Scroll Observer Animation Class */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(15px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Gradient Text Utility */
+      .text-gradient {
+        background: linear-gradient(to bottom right, #ffffff 30%, #a7f3d0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Glass Utility */
+      .glass-panel {
+        background: rgba(10, 20, 15, 0.6);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      /* Beam Line */
+      .beam-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateX(-50%);
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .beam-light {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          #10b981,
+          transparent
+        );
+        filter: blur(2px);
+        animation: beam-drop 4s infinite ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="antialiased min-h-screen relative flex flex-col" id="app">
+    <!-- Top Ambient Glow -->
+    <div
+      class="absolute top-[-100px] left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[500px] bg-brand-500/10 blur-[130px] rounded-full pointer-events-none z-0 mix-blend-screen"
+    ></div>
+
+    <!-- Navigation -->
+    <header class="fixed top-0 w-full z-50 glass-panel">
+      <div
+        class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-2.5 reveal-on-scroll">
+          <div
+            class="w-7 h-7 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400"
+          >
+            <i data-lucide="layers" class="w-4 h-4"></i>
+          </div>
+          <span class="text-sm font-semibold tracking-tight text-white"
+            >SkillFunnel</span
+          >
+        </div>
+
+        <nav
+          class="hidden md:flex items-center gap-8 text-xs font-medium text-neutral-400 uppercase tracking-widest reveal-on-scroll"
+          style="transition-delay: 100ms"
+        >
+          <a href="#" class="hover:text-brand-300 transition-colors"
+            >Methodology</a
+          >
+          <a href="#" class="hover:text-brand-300 transition-colors">Mentors</a>
+          <a href="#" class="hover:text-brand-300 transition-colors">Pricing</a>
+          <a href="#" class="hover:text-brand-300 transition-colors">Login</a>
+        </nav>
+
+        <div
+          class="flex items-center gap-4 reveal-on-scroll"
+          style="transition-delay: 200ms"
+        >
+          <button
+            class="relative overflow-hidden rounded-md bg-white text-black px-4 py-2 text-xs font-semibold tracking-tight hover:bg-neutral-200 transition-colors"
+          >
+            Get Access
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative z-10 pt-32 pb-0 overflow-hidden flex-grow">
+      <!-- Hero Section -->
+      <section
+        class="max-w-7xl mx-auto px-6 flex flex-col items-center text-center relative z-10"
+      >
+        <!-- Rating / Trust -->
+        <div
+          class="flex items-center gap-3 mb-8 animate-slide-up py-1 px-3 rounded-full border border-white/5 bg-white/[0.02]"
+          style="animation-delay: 0.1s"
+        >
+          <div class="flex -space-x-1.5">
+            <div
+              class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-900 overflow-hidden"
+            >
+              <img src="https://i.pravatar.cc/100?img=8" class="opacity-80" />
+            </div>
+            <div
+              class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-900 overflow-hidden"
+            >
+              <img src="https://i.pravatar.cc/100?img=9" class="opacity-80" />
+            </div>
+            <div
+              class="w-5 h-5 rounded-full bg-neutral-800 border border-neutral-900 overflow-hidden"
+            >
+              <img src="https://i.pravatar.cc/100?img=10" class="opacity-80" />
+            </div>
+          </div>
+          <span class="text-xs text-neutral-400 font-medium tracking-wide"
+            ><span class="text-white font-semibold">4.9/5</span> from 2,000+
+            creators</span
+          >
+        </div>
+
+        <!-- Headline: Font weight decreased to medium as requested -->
+        <h1
+          class="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-white mb-6 max-w-5xl mx-auto leading-[0.95] animate-slide-up"
+          style="animation-delay: 0.2s"
+        >
+          Lead magnet creation <br />
+          <span
+            class="bg-clip-text text-transparent bg-gradient-to-r from-brand-300 to-brand-600"
+            >mastered simply.</span
+          >
+        </h1>
+
+        <p
+          class="text-lg text-neutral-400 max-w-2xl mx-auto mb-10 font-normal leading-relaxed animate-slide-up tracking-tight"
+          style="animation-delay: 0.3s"
+        >
+          Create irresistible lead magnets and build automated sales systems
+          that convert cold traffic into loyal customers. No complex code, just
+          results.
+        </p>
+
+        <!-- Buttons -->
+        <div
+          class="flex flex-col sm:flex-row items-center gap-4 mb-12 animate-slide-up"
+          style="animation-delay: 0.4s"
+        >
+          <button
+            class="relative group px-8 py-3.5 bg-brand-600 text-white rounded-lg text-sm font-medium tracking-wide shadow-[0_0_40px_-10px_rgba(16,185,129,0.3)] hover:bg-brand-500 transition-all duration-300"
+          >
+            <span class="relative z-10 flex items-center gap-2">
+              Start Learning Now
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </button>
+
+          <a
+            href="#"
+            class="group flex items-center gap-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors px-6 py-3"
+          >
+            View curriculum
+          </a>
+        </div>
+
+        <!-- Interactive Visual Area (Noodles & 3D Cards) -->
+        <div
+          class="relative w-full max-w-6xl mx-auto h-[550px] flex items-center justify-center animate-slide-up"
+          style="animation-delay: 0.5s"
+        >
+          <!-- Background Gradient Fade -->
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#020403] z-20 pointer-events-none"
+          ></div>
+
+          <!-- Animated Noodles SVG -->
+          <svg
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] pointer-events-none z-0 opacity-60"
+            viewBox="0 0 800 600"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <defs>
+              <linearGradient id="gradBrand" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop
+                  offset="0%"
+                  style="stop-color: rgba(16, 185, 129, 0); stop-opacity: 0"
+                ></stop>
+                <stop
+                  offset="50%"
+                  style="stop-color: rgba(52, 211, 153, 0.6); stop-opacity: 1"
+                ></stop>
+                <stop
+                  offset="100%"
+                  style="stop-color: rgba(16, 185, 129, 0); stop-opacity: 0"
+                ></stop>
+              </linearGradient>
+            </defs>
+            <!-- Organic flowing lines -->
+            <path
+              d="M-100,300 C100,100 300,500 400,300 S700,100 900,300"
+              stroke="url(#gradBrand)"
+              class="noodle-path"
+              style="animation-duration: 8s; animation-delay: 0s"
+            ></path>
+            <path
+              d="M-100,250 C150,450 350,150 400,250 S650,450 900,250"
+              stroke="url(#gradBrand)"
+              class="noodle-path"
+              style="animation-duration: 10s; animation-delay: -2s"
+            ></path>
+            <path
+              d="M-100,350 C50,150 250,550 400,350 S750,150 900,350"
+              stroke="url(#gradBrand)"
+              class="noodle-path"
+              style="animation-duration: 12s; animation-delay: -4s"
+            ></path>
+          </svg>
+
+          <!-- 3D Carousel Container -->
+          <div
+            class="relative w-full max-w-md h-[420px] card-carousel flex items-center justify-center z-10"
+            id="cardCarousel"
+          >
+            <!-- Prev Arrow -->
+            <button
+              id="prevBtn"
+              class="absolute -left-12 md:-left-24 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full text-neutral-500 hover:text-brand-400 hover:bg-white/5 transition-all"
+            >
+              <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Card 1 -->
+            <div
+              class="carousel-item w-full h-full bg-[#0a0f0c] rounded-xl p-1 group flashlight-card shadow-2xl"
+              data-index="0"
+            >
+              <div
+                class="w-full h-full bg-neutral-900/40 rounded-lg overflow-hidden relative border border-white/5 flex flex-col"
+              >
+                <div class="h-1/2 w-full relative overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&amp;w=1974&amp;auto=format&amp;fit=crop"
+                    class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500 grayscale hover:grayscale-0"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-[#0a0f0c] to-transparent"
+                  ></div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-end">
+                  <div
+                    class="w-10 h-10 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4 border border-brand-500/20"
+                  >
+                    <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                  </div>
+                  <h3
+                    class="text-xl text-white font-medium tracking-tight mb-2"
+                  >
+                    Design Systems
+                  </h3>
+                  <p
+                    class="text-sm text-neutral-500 leading-relaxed font-normal"
+                  >
+                    Crafting visual languages that convert. Learn typography,
+                    spacing, and layout.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+              class="carousel-item w-full h-full bg-[#0a0f0c] rounded-xl p-1 group flashlight-card shadow-2xl"
+              data-index="1"
+            >
+              <div
+                class="w-full h-full bg-neutral-900/40 rounded-lg overflow-hidden relative border border-white/5 flex flex-col"
+              >
+                <div class="h-1/2 w-full relative overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&amp;w=2032&amp;auto=format&amp;fit=crop"
+                    class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500 grayscale hover:grayscale-0"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-[#0a0f0c] to-transparent"
+                  ></div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-end">
+                  <div
+                    class="w-10 h-10 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4 border border-brand-500/20"
+                  >
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                  </div>
+                  <h3
+                    class="text-xl text-white font-medium tracking-tight mb-2"
+                  >
+                    Audience Psychology
+                  </h3>
+                  <p
+                    class="text-sm text-neutral-500 leading-relaxed font-normal"
+                  >
+                    Deep dive into user intent and behavioral triggers for
+                    higher engagement.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+              class="carousel-item w-full h-full bg-[#0a0f0c] rounded-xl p-1 group flashlight-card shadow-2xl"
+              data-index="2"
+            >
+              <div
+                class="w-full h-full bg-neutral-900/40 rounded-lg overflow-hidden relative border border-white/5 flex flex-col"
+              >
+                <div class="h-1/2 w-full relative overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&amp;w=2070&amp;auto=format&amp;fit=crop"
+                    class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500 grayscale hover:grayscale-0"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-[#0a0f0c] to-transparent"
+                  ></div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-end">
+                  <div
+                    class="w-10 h-10 rounded-full bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4 border border-brand-500/20"
+                  >
+                    <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+                  </div>
+                  <h3
+                    class="text-xl text-white font-medium tracking-tight mb-2"
+                  >
+                    Funnel Analytics
+                  </h3>
+                  <p
+                    class="text-sm text-neutral-500 leading-relaxed font-normal"
+                  >
+                    Measure what matters. Optimization loops and data-driven
+                    decisions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Next Arrow -->
+            <button
+              id="nextBtn"
+              class="absolute -right-12 md:-right-24 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full text-neutral-500 hover:text-brand-400 hover:bg-white/5 transition-all"
+            >
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Connecting Section with Noodle -->
+        <div class="w-full h-24 relative overflow-hidden -mt-10 z-0">
+          <svg
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-full"
+            viewBox="0 0 600 100"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient
+                id="gradBrandVertical"
+                x1="0%"
+                y1="0%"
+                x2="0%"
+                y2="100%"
+              >
+                <stop
+                  offset="0%"
+                  style="stop-color: rgba(52, 211, 153, 0); stop-opacity: 0"
+                ></stop>
+                <stop
+                  offset="50%"
+                  style="stop-color: rgba(52, 211, 153, 1); stop-opacity: 1"
+                ></stop>
+                <stop
+                  offset="100%"
+                  style="stop-color: rgba(52, 211, 153, 0); stop-opacity: 0"
+                ></stop>
+              </linearGradient>
+            </defs>
+            <!-- Background static line -->
+            <path d="M300,0 L300,100" class="connector-path"></path>
+            <!-- Animated beam line -->
+            <path d="M300,0 L300,100" class="connector-path-active"></path>
+          </svg>
+        </div>
+
+        <!-- Logos -->
+        <div class="mt-4 mb-24 w-full reveal-on-scroll relative z-10">
+          <p
+            class="text-[10px] text-neutral-600 uppercase tracking-[0.2em] font-semibold mb-10"
+          >
+            Integration Partners
+          </p>
+          <div
+            class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-700"
+          >
+            <iconify-icon
+              icon="simple-icons:meta"
+              width="24"
+              class="text-white hover:text-brand-400 transition-colors"
+            ></iconify-icon>
+            <iconify-icon
+              icon="simple-icons:notion"
+              width="24"
+              class="text-white hover:text-brand-400 transition-colors"
+            ></iconify-icon>
+            <iconify-icon
+              icon="simple-icons:stripe"
+              width="50"
+              class="text-white hover:text-brand-400 transition-colors"
+            ></iconify-icon>
+            <iconify-icon
+              icon="simple-icons:linear"
+              width="24"
+              class="text-white hover:text-brand-400 transition-colors"
+            ></iconify-icon>
+            <iconify-icon
+              icon="simple-icons:loom"
+              width="24"
+              class="text-white hover:text-brand-400 transition-colors"
+            ></iconify-icon>
+          </div>
+        </div>
+
+        <!-- Value Prop Section with Beam Animation -->
+        <div class="w-full relative pb-20">
+          <!-- Vertical Beam connecting sections -->
+          <div class="beam-container">
+            <div class="beam-light"></div>
+          </div>
+
+          <div
+            class="max-w-4xl mx-auto mb-20 text-center reveal-on-scroll relative z-10"
+          >
+            <div
+              class="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-brand-900/50 bg-brand-950/30 text-brand-400 text-xs font-medium tracking-wide mb-6 backdrop-blur-sm"
+            >
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-brand-400 mr-2 animate-pulse"
+              ></span>
+              Live Cohort Starting Soon
+            </div>
+
+            <h2
+              class="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-6"
+            >
+              Why funnels matter <br />
+              <span class="text-neutral-600 font-normal italic"
+                >more than ever.</span
+              >
+            </h2>
+
+            <p
+              class="text-lg text-neutral-400 font-normal max-w-xl mx-auto mb-10 leading-relaxed"
+            >
+              In an age of noise, clarity wins. This course provides the
+              architectural blueprints to build sustainable, high-converting
+              digital ecosystems.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mt-16">
+              <div
+                class="p-6 rounded-xl bg-[#030604] border border-white/5 hover:border-brand-500/30 transition-colors group relative overflow-hidden"
+              >
+                <div
+                  class="absolute inset-0 bg-gradient-to-b from-brand-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
+                <i
+                  data-lucide="zap"
+                  class="w-6 h-6 text-neutral-500 group-hover:text-brand-400 mb-4 transition-colors relative z-10"
+                ></i>
+                <h3 class="text-white font-medium mb-2 relative z-10">
+                  Speed to Market
+                </h3>
+                <p
+                  class="text-sm text-neutral-500 leading-relaxed relative z-10"
+                >
+                  Deploy campaigns in hours, not weeks. Templates designed for
+                  immediate impact.
+                </p>
+              </div>
+              <div
+                class="p-6 rounded-xl bg-[#030604] border border-white/5 hover:border-brand-500/30 transition-colors group relative overflow-hidden"
+              >
+                <div
+                  class="absolute inset-0 bg-gradient-to-b from-brand-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
+                <i
+                  data-lucide="git-branch"
+                  class="w-6 h-6 text-neutral-500 group-hover:text-brand-400 mb-4 transition-colors relative z-10"
+                ></i>
+                <h3 class="text-white font-medium mb-2 relative z-10">
+                  Automated Flows
+                </h3>
+                <p
+                  class="text-sm text-neutral-500 leading-relaxed relative z-10"
+                >
+                  Set it and forget it. Nurture leads while you sleep with
+                  intelligent branching.
+                </p>
+              </div>
+              <div
+                class="p-6 rounded-xl bg-[#030604] border border-white/5 hover:border-brand-500/30 transition-colors group relative overflow-hidden"
+              >
+                <div
+                  class="absolute inset-0 bg-gradient-to-b from-brand-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
+                <i
+                  data-lucide="shield-check"
+                  class="w-6 h-6 text-neutral-500 group-hover:text-brand-400 mb-4 transition-colors relative z-10"
+                ></i>
+                <h3 class="text-white font-medium mb-2 relative z-10">
+                  Proven Reliability
+                </h3>
+                <p
+                  class="text-sm text-neutral-500 leading-relaxed relative z-10"
+                >
+                  Battle-tested strategies used by top creators to generate
+                  consistent revenue.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Grid -->
+          <div
+            class="relative z-10 mx-auto w-full max-w-5xl border-t border-white/5 pt-16 reveal-on-scroll"
+          >
+            <div
+              class="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 text-center md:text-left pl-6 md:pl-0"
+            >
+              <div class="text-left">
+                <h3
+                  class="text-4xl font-light text-white tracking-tighter mb-2"
+                >
+                  78%
+                </h3>
+                <p
+                  class="text-xs text-neutral-500 font-medium uppercase tracking-wide"
+                >
+                  Conversion Rate
+                </p>
+              </div>
+              <div class="text-left">
+                <h3
+                  class="text-4xl font-light text-white tracking-tighter mb-2"
+                >
+                  42<span class="text-2xl text-neutral-600">days</span>
+                </h3>
+                <p
+                  class="text-xs text-neutral-500 font-medium uppercase tracking-wide"
+                >
+                  Avg Launch Time
+                </p>
+              </div>
+              <div class="text-left">
+                <h3
+                  class="text-4xl font-light text-white tracking-tighter mb-2"
+                >
+                  2.5<span class="text-2xl text-neutral-600">x</span>
+                </h3>
+                <p
+                  class="text-xs text-neutral-500 font-medium uppercase tracking-wide"
+                >
+                  ROI Increase
+                </p>
+              </div>
+              <div class="text-left">
+                <h3
+                  class="text-4xl font-light text-white tracking-tighter mb-2"
+                >
+                  10k<span class="text-2xl text-neutral-600">+</span>
+                </h3>
+                <p
+                  class="text-xs text-neutral-500 font-medium uppercase tracking-wide"
+                >
+                  Active Students
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#020403] relative z-20">
+      <div class="max-w-7xl mx-auto px-6 pt-16 pb-12">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 mb-16"
+        >
+          <!-- Brand Column -->
+          <div class="lg:col-span-2">
+            <div class="flex items-center gap-2 mb-6">
+              <div
+                class="w-6 h-6 rounded bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400"
+              >
+                <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+              </div>
+              <span class="text-sm font-semibold tracking-tight text-white"
+                >SkillFunnel</span
+              >
+            </div>
+            <p class="text-sm text-neutral-500 leading-relaxed mb-6 max-w-xs">
+              Master the art of funnel architecture. Built for creators who
+              value design and data equally.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="#"
+                class="text-neutral-500 hover:text-white transition-colors"
+                ><i data-lucide="twitter" class="w-4 h-4"></i
+              ></a>
+              <a
+                href="#"
+                class="text-neutral-500 hover:text-white transition-colors"
+                ><i data-lucide="github" class="w-4 h-4"></i
+              ></a>
+              <a
+                href="#"
+                class="text-neutral-500 hover:text-white transition-colors"
+                ><i data-lucide="linkedin" class="w-4 h-4"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Link Columns -->
+          <div>
+            <h4 class="text-xs font-medium text-white mb-4">Product</h4>
+            <ul class="space-y-3 text-sm text-neutral-500">
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Curriculum</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Case Studies</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Pricing</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Updates</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-medium text-white mb-4">Resources</h4>
+            <ul class="space-y-3 text-sm text-neutral-500">
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Community</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Docs</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-medium text-white mb-4">Company</h4>
+            <ul class="space-y-3 text-sm text-neutral-500">
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Legal</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-brand-400 transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="lg:col-span-1">
+            <h4 class="text-xs font-medium text-white mb-4">Stay Updated</h4>
+            <form class="flex flex-col gap-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="bg-white/5 border border-white/10 rounded-md px-3 py-2 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-brand-500/50 focus:ring-1 focus:ring-brand-500/50 transition-all"
+              />
+              <button
+                type="button"
+                class="bg-white text-black text-xs font-medium px-3 py-2 rounded-md hover:bg-neutral-200 transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="text-xs text-neutral-600">
+            © 2024 SkillFunnel Inc. All rights reserved.
+          </p>
+          <div class="flex gap-6 text-xs text-neutral-600">
+            <a href="#" class="hover:text-neutral-400 transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-neutral-400 transition-colors"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // --- Icons ---
+      lucide.createIcons({
+        attrs: {
+          "stroke-width": 1.5,
+        },
+      });
+
+      // --- Flashlight Effect ---
+      const handleMouseMove = (e) => {
+        const { clientX, clientY } = e;
+        const x = clientX;
+        const y = clientY;
+        document.documentElement.style.setProperty("--mouse-x", `${x}px`);
+        document.documentElement.style.setProperty("--mouse-y", `${y}px`);
+      };
+      document.addEventListener("mousemove", handleMouseMove);
+
+      // --- Carousel Logic ---
+      const items = document.querySelectorAll(".carousel-item");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      let currentIndex = 1; // Start with middle item
+
+      const updateCarousel = () => {
+        items.forEach((item, index) => {
+          item.classList.remove("active", "prev", "next");
+
+          if (index === currentIndex) {
+            item.classList.add("active");
+          } else if (
+            index ===
+            (currentIndex - 1 + items.length) % items.length
+          ) {
+            item.classList.add("prev");
+          } else if (index === (currentIndex + 1) % items.length) {
+            item.classList.add("next");
+          }
+        });
+      };
+
+      const goNext = () => {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel();
+      };
+
+      const goPrev = () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        updateCarousel();
+      };
+
+      nextBtn.addEventListener("click", goNext);
+      prevBtn.addEventListener("click", goPrev);
+
+      setInterval(goNext, 6000); // Slower auto-rotation
+      updateCarousel();
+
+      // --- Scroll Reveal Animation ---
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.15,
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".reveal-on-scroll").forEach((element) => {
+        observer.observe(element);
+      });
+    </script>
+  </body>
+</html>

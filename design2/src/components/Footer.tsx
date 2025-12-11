@@ -1,3 +1,4 @@
+
 const Footer = () => {
   return (
     <footer className="relative bg-white border-t border-slate-100 pt-24 pb-12 px-6 overflow-hidden">
@@ -5,7 +6,7 @@ const Footer = () => {
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none"></div>
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-t from-slate-50 to-transparent blur-3xl opacity-50 pointer-events-none"></div>
 
-      <div className="relative max-w-6xl mx-auto z-10 text-left">
+      <div className="relative max-w-6xl mx-auto z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1">
@@ -13,22 +14,22 @@ const Footer = () => {
               <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white shadow-lg shadow-slate-900/20">
                 <span className="font-serif italic font-bold text-lg">V</span>
               </div>
-              <span className="font-medium tracking-tight text-slate-900 font-serif italic">
+              <span className="font-medium tracking-tight text-slate-900">
                 Vol. 4
               </span>
             </div>
-            <p className="text-sm text-slate-500 leading-relaxed pr-4 max-w-xs font-light">
+            <p className="text-sm text-slate-500 leading-relaxed pr-4 max-w-xs">
               Curating the best insights from the digital world. Crafted with
               precision for the modern web.
             </p>
           </div>
 
           {/* Platform Column */}
-          <div className="text-left">
-            <h4 className="font-medium text-sm mb-6 text-slate-900 tracking-tight">
+          <div>
+            <h4 className="font-semibold text-sm mb-6 text-slate-900 tracking-tight">
               Platform
             </h4>
-            <ul className="space-y-3 text-sm text-slate-500 font-light">
+            <ul className="space-y-3 text-sm text-slate-500">
               <li>
                 <a
                   href="#"
@@ -57,11 +58,11 @@ const Footer = () => {
           </div>
 
           {/* Company Column */}
-          <div className="text-left">
-            <h4 className="font-medium text-sm mb-6 text-slate-900 tracking-tight">
+          <div>
+            <h4 className="font-semibold text-sm mb-6 text-slate-900 tracking-tight">
               Company
             </h4>
-            <ul className="space-y-3 text-sm text-slate-500 font-light">
+            <ul className="space-y-3 text-sm text-slate-500">
               <li>
                 <a
                   href="#"
@@ -93,8 +94,8 @@ const Footer = () => {
           </div>
 
           {/* Connect Column */}
-          <div className="text-left">
-            <h4 className="font-medium text-sm mb-6 text-slate-900 tracking-tight">
+          <div>
+            <h4 className="font-semibold text-sm mb-6 text-slate-900 tracking-tight">
               Connect
             </h4>
             <div className="flex gap-3">
@@ -133,10 +134,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center pt-8 border-t border-slate-100 text-xs text-slate-500 text-left">
-          <p className="mb-4 md:mb-0 font-light">
-            © 2024 Digital Landscape Report. All rights reserved.
-          </p>
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-slate-100 text-xs text-slate-500">
+          <p className="mb-4 md:mb-0">© 2024 Digital Landscape Report. All rights reserved.</p>
           <div className="flex gap-6">
             <a
               href="#"
