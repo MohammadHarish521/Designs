@@ -29,12 +29,12 @@
   --color-neutral-700: #404040;
   --color-neutral-800: #262626;
   --color-neutral-900: #171717;
-  --color-neutral-950: #0a0a0a;
+  --color-neutral-950: #020202;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #020202;
     --foreground: #ededed;
   }
 }
@@ -46,6 +46,187 @@ body {
   text-transform: none; /* Enforce normal case */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-grid {
+  background-size: 50px 50px;
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    );
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+.infra-graph {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.04);
+  stroke-width: 1;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+.infra-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 60s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.beam-glow {
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(253, 224, 71, 0.08) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  transform: translateX(-50%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2);
+  }
+}
+
+.shooting-beam {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 150px;
+  background: linear-gradient(to bottom, transparent, rgba(253, 224, 71, 0.4), transparent);
+  opacity: 0;
+  animation: beam-drop 6s linear infinite;
+}
+.shooting-beam:nth-child(1) {
+  left: 20%;
+  animation-delay: 0s;
+  animation-duration: 7s;
+}
+.shooting-beam:nth-child(2) {
+  left: 50%;
+  animation-delay: 3s;
+  animation-duration: 5s;
+}
+.shooting-beam:nth-child(3) {
+  left: 80%;
+  animation-delay: 1.5s;
+  animation-duration: 8s;
+}
+
+@keyframes beam-drop {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120vh);
+    opacity: 0;
+  }
+}
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+.border-beam {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+  border: 1px solid transparent;
+}
+.border-beam::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  offset-path: rect(0 auto auto 0 round 16px);
+  animation: border-beam 8s linear infinite;
+  box-shadow: 0 0 20px 2px var(--accent);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.chart-bar {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  animation: grow 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.bar {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  animation: grow 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes grow {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.perspective-1000 {
+  perspective: 1000px;
 }
 
 /* Subtle Grain Texture */
@@ -96,16 +277,122 @@ body {
 }
 
 .beam-travel {
-  stroke-dasharray: 100 1000;
-  stroke-dashoffset: 1100;
-  animation: beamMove 3s linear infinite;
-  filter: drop-shadow(0 0 2px currentColor);
+  stroke-dasharray: 100 2000;
+  stroke-dashoffset: 2100;
+  animation: beamMove 4s linear infinite;
+  filter: drop-shadow(0 0 5px var(--accent));
+  stroke: var(--accent);
+  stroke-width: 2px;
 }
 
 @keyframes beamMove {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+/* Hero Animations */
+@keyframes grid-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes headline-fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes headline-stagger {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes dashboard-slide {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1.03);
+  }
+}
+
+.animate-grid-fade {
+  animation: grid-fade 1.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-fade-in-delay {
+  animation: fade-in 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-2 {
+  animation: fade-in 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-headline-fade {
+  animation: headline-fade 1s ease-out forwards;
+}
+
+.animate-headline-stagger {
+  animation: headline-stagger 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-dashboard-slide {
+  animation: dashboard-slide 1s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
 }
 
 @layer utilities {

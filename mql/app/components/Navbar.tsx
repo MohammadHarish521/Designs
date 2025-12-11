@@ -1,82 +1,25 @@
 'use client';
 
-import { Moon, Sun, Waves } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { PiSparkleFill } from 'react-icons/pi';
 
 export default function Navbar() {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    // Check initial theme preference
-    if (document.documentElement.classList.contains('dark')) {
-      setIsDark(true);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle('dark');
-    setIsDark(!isDark);
-  };
-
   return (
-    <nav className="fixed top-0 w-full z-50 border-b border-neutral-200/60 dark:border-neutral-800/60 bg-neutral-50/80 dark:bg-neutral-950/80 backdrop-blur-md transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2 group cursor-pointer">
-          <div className="w-6 h-6 bg-amber-400 dark:bg-amber-300 rounded-sm flex items-center justify-center text-neutral-900 transition-colors">
-            <Waves size={14} />
-          </div>
-          <span className="font-semibold tracking-tight text-sm text-neutral-900 dark:text-white">
-            MQL Gateway
+    <nav className="fixed top-0 left-0 right-0 z-50 px-6 sm:px-10 py-5">
+      <div className="flex items-center justify-between">
+        <a href="#" className="flex items-center gap-3 text-white">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-yellow-300/40 bg-yellow-300/10 text-yellow-300 shadow-[0_0_24px_rgba(253,224,71,0.15)]">
+            <PiSparkleFill className="h-4 w-4" />
           </span>
-        </div>
+          <span className="text-sm font-semibold tracking-tight">MQL</span>
+        </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          <a
-            href="#platform"
-            className="text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
-          >
-            Features
+        <div className="flex items-center gap-6 text-sm">
+          <a href="#" className="text-neutral-300 hover:text-white transition-colors px-3 py-1.5 rounded-full border border-transparent hover:border-white/10">
+            Documentation
           </a>
-          <a
-            href="#platform"
-            className="text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
-          >
-            Usage
-          </a>
-          <a
-            href="#security"
-            className="text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
-          >
-            Security
-          </a>
-          <a
-            href="#"
-            className="text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
-          >
-            Docs
-          </a>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <button
-            onClick={toggleTheme}
-            className="text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors flex items-center justify-center"
-            aria-label="Toggle theme"
-          >
-            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          <button className="rounded-full border border-white/20 bg-white/5 px-5 py-1.5 text-white hover:bg-white/10 hover:border-white/30 transition-colors">
+            Log in
           </button>
-          <a
-            href="#"
-            className="hidden md:block text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition-colors"
-          >
-            Pricing
-          </a>
-          <a
-            href="#"
-            className="bg-amber-400 hover:bg-amber-300 text-neutral-900 text-xs font-semibold px-4 py-2 rounded-full transition-colors tracking-wide shadow-accent"
-          >
-            Start Free
-          </a>
         </div>
       </div>
     </nav>
