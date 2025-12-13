@@ -213,7 +213,7 @@ export default function Platform() {
             {/* Tall Card Right */}
             <div className="md:col-span-1 bg-neutral-800 rounded-2xl p-8 relative overflow-hidden flex flex-col justify-between text-white border border-neutral-700">
               <div className="relative z-10">
-                <div className="w-10 h-10 bg-amber-200/20 rounded-lg flex items-center justify-center mb-6 text-amber-300 border border-amber-200/40">
+                <div className="h-10 w-10 rounded-lg bg-yellow-500/10 flex items-center justify-center mb-6 text-yellow-400 border border-yellow-500/20">
                   <FiCpu size={20} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-xl font-semibold tracking-tight mb-2">
