@@ -1,11 +1,11 @@
+import Audience from "./components/Audience";
+import CTA from "./components/CTA";
 import Features from "./components/Features";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Metrics from "./components/Metrics";
 import Navbar from "./components/Navbar";
-import Platform from "./components/Platform";
 import Pricing from "./components/Pricing";
-import Testimonial from "./components/Testimonial";
 import Works from "./components/Works";
 
 export default function Home() {
@@ -16,9 +16,9 @@ export default function Home() {
       <Metrics />
       <Features />
       <Works />
-      <Platform />
       <Pricing />
-      <Testimonial />
+      <Audience />
+      <CTA />
       <Footer />
     </main>
   );
