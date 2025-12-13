@@ -22,7 +22,7 @@ export default function Works() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
           {/* Step 1 */}
-          <div className="group relative bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-neutral-700 transition-colors">
+          <div className="group relative bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-neutral-700 transition-colors flex flex-col">
             <div className="absolute -top-3 left-6 bg-neutral-950 border border-neutral-800 rounded-full px-3 py-1 text-xs font-mono text-neutral-400">
               Step 01
             </div>
@@ -39,7 +39,7 @@ export default function Works() {
               (requests, tokens, or dollars). Keys are encrypted and stored in
               PostgreSQL.
             </p>
-            <div className="bg-neutral-950 rounded-lg p-4 border border-neutral-800 font-mono text-xs text-neutral-300 overflow-x-auto custom-scrollbar">
+            <div className="bg-neutral-950 rounded-lg p-4 border border-neutral-800 font-mono text-xs text-neutral-300 overflow-x-auto custom-scrollbar flex-1">
               <div className="flex items-center justify-between mb-2 text-neutral-500">
                 <span>bash</span>
                 <PiCopySimple className="cursor-pointer hover:text-white" />
@@ -92,7 +92,7 @@ export default function Works() {
           </div>
 
           {/* Step 2 */}
-          <div className="group relative bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-neutral-700 transition-colors">
+          <div className="group relative bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-neutral-700 transition-colors flex flex-col">
             <div className="absolute -top-3 left-6 bg-neutral-950 border border-neutral-800 rounded-full px-3 py-1 text-xs font-mono text-neutral-400">
               Step 02
             </div>
@@ -108,7 +108,7 @@ export default function Works() {
               Point your OpenAI SDK to MQL&apos;s endpoint. Use your proxy key
               instead of the original API key. Zero code changes required.
             </p>
-            <div className="bg-neutral-950 rounded-lg p-4 border border-neutral-800 font-mono text-xs text-neutral-300 overflow-x-auto custom-scrollbar">
+            <div className="bg-neutral-950 rounded-lg p-4 border border-neutral-800 font-mono text-xs text-neutral-300 overflow-x-auto custom-scrollbar flex-1">
               <div className="flex items-center justify-between mb-2 text-neutral-500">
                 <span>.env</span>
                 <PiCopySimple className="cursor-pointer hover:text-white" />
@@ -142,7 +142,7 @@ export default function Works() {
           </div>
 
           {/* Step 3 */}
-          <div className="group relative bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-neutral-700 transition-colors">
+          <div className="group relative bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 hover:border-neutral-700 transition-colors flex flex-col">
             <div className="absolute -top-3 left-6 bg-neutral-950 border border-neutral-800 rounded-full px-3 py-1 text-xs font-mono text-neutral-400">
               Step 03
             </div>

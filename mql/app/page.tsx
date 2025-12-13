@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import Metrics from "./components/Metrics";
 import Navbar from "./components/Navbar";
 import Platform from "./components/Platform";
+import Pricing from "./components/Pricing";
 import Testimonial from "./components/Testimonial";
 import Works from "./components/Works";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <Features />
       <Works />
       <Platform />
+      <Pricing />
       <Testimonial />
       <Footer />
     </main>

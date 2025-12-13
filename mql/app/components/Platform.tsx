@@ -51,7 +51,7 @@ export default function Platform() {
 
         {/* Mobile Vertical Line */}
         <svg
-          className="absolute -top-0 w-px h-16 overflow-visible md:hidden"
+          className="absolute top-0 w-px h-16 overflow-visible md:hidden"
           viewBox="0 0 2 64"
         >
           <line
@@ -79,11 +79,11 @@ export default function Platform() {
       >
         <div id="security" className="absolute -top-24 h-px w-px" aria-hidden="true" />
         <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
+          <div className="mb-16 text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter text-white mb-4">
               Control, visibility, and safeguards in one proxy.
             </h2>
-            <p className="text-neutral-400 max-w-xl text-lg font-light">
+            <p className="text-neutral-400 max-w-xl text-lg font-light mx-auto">
               Set per-key limits, enforce content policies, and stream without
               changing your OpenAI client code.
             </p>
